@@ -6,9 +6,11 @@ class Global {
 
   // GLOBAL VARs
   PackageInfo? _platform;
+  ThemeMode? initialThemeMode;
 
   Future<void> _initialize() async {
     _platform = await PackageInfo.fromPlatform();
+    initialThemeMode = await ThemeModeStorage().readEnum();
   }
 
   // ACCESSIBLE
