@@ -1,7 +1,7 @@
 library main_view;
 
 import 'package:flutter/material.dart';
-import 'package:innovation/core/base/base_view.dart';
+import 'package:innovation/core/base/view_model_provider.dart';
 import 'package:innovation/core/routes/app_router.dart';
 import 'package:innovation/views/main/local_widgets/adaptive_scaffold.dart';
 import 'package:innovation/views/main/main_view_model.dart';
