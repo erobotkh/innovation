@@ -13,7 +13,7 @@ class AdaptiveScaffoldDestination {
   });
 }
 
-class AdaptiveScaffold extends StatelessWidget {
+class AdaptiveScaffold extends StatefulWidget {
   const AdaptiveScaffold({
     Key? key,
     required this.destinations,
@@ -28,34 +28,40 @@ class AdaptiveScaffold extends StatelessWidget {
   final Widget body;
 
   @override
+  State<AdaptiveScaffold> createState() => _AdaptiveScaffoldState();
+}
+
+class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
+  late final ValueNotifier<bool> extendedNotifier;
+
+  @override
+  void initState() {
+    extendedNotifier = ValueNotifier<bool>(false);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    extendedNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
           return Scaffold(
             bottomNavigationBar: buildBottomNavigation(),
-            body: body,
-          );
-        } else if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
-          return Scaffold(
-            body: Row(
-              children: [
-                buildNavigationRail(),
-                const VerticalDivider(width: 1),
-                Expanded(
-                  child: body,
-                ),
-              ],
-            ),
+            body: widget.body,
           );
         } else {
           return Scaffold(
             body: Row(
               children: [
-                buildDrawer(context),
-                const VerticalDivider(width: 1),
+                buildSideBar(),
                 Expanded(
-                  child: body,
+                  child: widget.body,
                 ),
               ],
             ),
@@ -65,11 +71,41 @@ class AdaptiveScaffold extends StatelessWidget {
     );
   }
 
+  Widget buildSideBar() {
+    return ValueListenableBuilder<bool>(
+      valueListenable: extendedNotifier,
+      builder: (context, extended, child) {
+        return Container(
+          color: Theme.of(context).appBarTheme.backgroundColor,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0 + 2),
+                child: IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    extendedNotifier.value = !extended;
+                  },
+                ),
+              ),
+              Expanded(
+                child: buildNavigationRail(
+                  extended: extended,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Widget buildBottomNavigation() {
     return NavigationBar(
-      selectedIndex: selectedIndex,
-      onDestinationSelected: (int index) => onDestinationSelected(index),
-      destinations: destinations.map((e) {
+      selectedIndex: widget.selectedIndex,
+      onDestinationSelected: (int index) => widget.onDestinationSelected(index),
+      destinations: widget.destinations.map((e) {
         return NavigationDestination(
           icon: Icon(e.iconData),
           selectedIcon: Icon(e.activeIconData),
@@ -80,45 +116,21 @@ class AdaptiveScaffold extends StatelessWidget {
     );
   }
 
-  Widget buildNavigationRail() {
+  Widget buildNavigationRail({
+    bool extended = false,
+  }) {
     return NavigationRail(
-      selectedIndex: selectedIndex,
-      onDestinationSelected: (int index) => onDestinationSelected(index),
-      destinations: destinations.map((e) {
+      selectedIndex: widget.selectedIndex,
+      extended: extended,
+      backgroundColor: Colors.transparent,
+      onDestinationSelected: (int index) => widget.onDestinationSelected(index),
+      destinations: widget.destinations.map((e) {
         return NavigationRailDestination(
           icon: Icon(e.iconData),
           selectedIcon: Icon(e.activeIconData),
           label: Text(e.label),
         );
       }).toList(),
-    );
-  }
-
-  // Flutter team still working on M3 navigation drawer.
-  // Meanwhile, we custom the UI
-  Widget buildDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        children: List.generate(
-          destinations.length,
-          (index) {
-            AdaptiveScaffoldDestination destination = destinations[index];
-            bool selected = index == selectedIndex;
-            return ListTile(
-              title: Text(destination.label),
-              onTap: () => onDestinationSelected(index),
-              leading: SizedBox(
-                width: 44,
-                height: 44,
-                child: Icon(
-                  selected ? destination.activeIconData : destination.iconData,
-                  color: selected ? Theme.of(context).colorScheme.primary : null,
-                ),
-              ),
-            );
-          },
-        ),
-      ),
     );
   }
 }
