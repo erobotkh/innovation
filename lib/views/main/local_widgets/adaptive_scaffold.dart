@@ -50,7 +50,8 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
+        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile ||
+            sizingInformation.deviceScreenType == DeviceScreenType.watch) {
           return Scaffold(
             bottomNavigationBar: buildBottomNavigation(),
             body: widget.body,

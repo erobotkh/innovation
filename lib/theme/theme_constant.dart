@@ -4,6 +4,28 @@ class ThemeConstant {
   static const Color brandColor = Color(0xFFD30101);
   static const String defaultFontFamily = 'Open Sans';
 
+  /// ref: http://fashioncambodia.blogspot.com/2015/11/7-colors-for-every-single-day-of-week.html
+  static const Map<int, Color> colorsByDayLight = {
+    DateTime.monday: Color(0xFFE38A41),
+    DateTime.tuesday: Color(0xFF9341B1),
+    DateTime.wednesday: Color(0xFFA3AA49),
+    DateTime.thursday: Color(0xFF397C2D),
+    DateTime.friday: Color(0xFF5080D7),
+    DateTime.saturday: Color(0xFF6E183B),
+    DateTime.sunday: Color(0xFFE5333A),
+  };
+
+  /// generated m3 color from https://material-foundation.github.io/material-theme-builder/#/dynamic
+  static const Map<int, Color> colorsByDayDark = {
+    DateTime.monday: Color(0xFFFFB780),
+    DateTime.tuesday: Color(0xFFF0AFFF),
+    DateTime.wednesday: Color(0xFFC5CE5B),
+    DateTime.thursday: Color(0xFF90D87D),
+    DateTime.friday: Color(0xFFACC7FF),
+    DateTime.saturday: Color(0xFFFFB0C8),
+    DateTime.sunday: Color(0xFFFFB3AC),
+  };
+
   static const TextTheme defaultTextTheme = TextTheme(
     displayLarge: TextStyle(
       fontWeight: FontWeight.w400,
