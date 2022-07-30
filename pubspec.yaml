@@ -30,6 +30,7 @@ dependencies:
   copy_with_extension: ^4.0.2
   json_annotation: ^4.6.0
   japx: ^2.0.4
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:

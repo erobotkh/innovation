@@ -1,6 +1,6 @@
 import 'package:innovation/core/base/base_model.dart';
-import 'package:innovation/core/http/apis/mixins/endpoint_constructor.dart';
-import 'package:innovation/core/http/apis/mixins/json_api_transformable.dart';
+import 'package:innovation/core/http/mixins/endpoint_constructor.dart';
+import 'package:innovation/core/http/mixins/json_api_transformable.dart';
 import 'package:innovation/core/http/networks/base_network.dart';
 import 'package:innovation/core/models/commons/object_list_model.dart';
 import 'package:dio/dio.dart';
