@@ -25,13 +25,20 @@ class HomeCard extends StatelessWidget {
       borderOnForeground: true,
       margin: EdgeInsets.zero,
       elevation: 1.0,
+      clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
         borderRadius: ConfigConstant.circlarRadius1,
-        side: BorderSide(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1)),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+        ),
       ),
       color: backgroundColor,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return object.toRoute;
+          }));
+        },
         child: Stack(
           children: [
             Container(

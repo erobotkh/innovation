@@ -47,6 +47,7 @@ class _HomeMobile extends StatelessWidget {
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: HomeCardObject.items.length,
               itemBuilder: (context, index) {
                 return buildCard(index, info);
@@ -55,6 +56,7 @@ class _HomeMobile extends StatelessWidget {
           },
         );
       }),
+      ConfigConstant.sizedBoxH2,
     ];
   }
 
