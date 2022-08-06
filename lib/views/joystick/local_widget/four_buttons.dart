@@ -16,9 +16,10 @@ class FourButtons extends StatelessWidget {
     this.onRight,
     this.onDown,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 168,
       width: 168,
       child: Row(

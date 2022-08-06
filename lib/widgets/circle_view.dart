@@ -17,7 +17,7 @@ class CircleView extends StatelessWidget {
 
   final String? buttonText;
 
-  CircleView({
+  const CircleView({
     this.size,
     this.color = Colors.transparent,
     this.boxShadow,
@@ -26,66 +26,67 @@ class CircleView extends StatelessWidget {
     this.buttonImage,
     this.buttonIcon,
     this.buttonText,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: size,
       height: size,
-      child: Center(
-        child: buttonIcon ?? buttonImage ?? Text(buttonText ?? ""),
-      ),
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
         border: border,
         boxShadow: boxShadow,
       ),
+      child: Center(
+        child: buttonIcon ?? buttonImage ?? Text(buttonText ?? ""),
+      ),
     );
   }
 
   factory CircleView.joystickCircle(double size, Color color) => CircleView(
-    size: size,
-    color: color,
-    border: Border.all(
-      color: Colors.black45,
-      width: 4.0,
-      style: BorderStyle.solid,
-    ),
-    boxShadow: <BoxShadow>[
-      BoxShadow(
-        color: Colors.black12,
-        spreadRadius: 8.0,
-        blurRadius: 8.0,
-      )
-    ],
-  );
+        size: size,
+        color: color,
+        border: Border.all(
+          color: Colors.black45,
+          width: 4.0,
+          style: BorderStyle.solid,
+        ),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            spreadRadius: 8.0,
+            blurRadius: 8.0,
+          )
+        ],
+      );
 
   factory CircleView.joystickInnerCircle(double size, Color color) => CircleView(
-    size: size,
-    color: color,
-    border: Border.all(
-      color: Colors.black26,
-      width: 2.0,
-      style: BorderStyle.solid,
-    ),
-    boxShadow: <BoxShadow>[
-      BoxShadow(
-        color: Colors.black12,
-        spreadRadius: 8.0,
-        blurRadius: 8.0,
-      )
-    ],
-  );
+        size: size,
+        color: color,
+        border: Border.all(
+          color: Colors.black26,
+          width: 2.0,
+          style: BorderStyle.solid,
+        ),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            spreadRadius: 8.0,
+            blurRadius: 8.0,
+          )
+        ],
+      );
 
   factory CircleView.padBackgroundCircle(
-      double size,
-      Color backgroundColour,
-      borderColor,
-      Color shadowColor, {
-        double? opacity,
-      }) {
+    double size,
+    Color backgroundColour,
+    borderColor,
+    Color shadowColor, {
+    double? opacity,
+  }) {
     return CircleView(
       size: size,
       color: backgroundColour,
@@ -106,12 +107,12 @@ class CircleView extends StatelessWidget {
   }
 
   factory CircleView.padButtonCircle(
-      double size,
-      Color color,
-      Image image,
-      Icon icon,
-      String text,
-      ) {
+    double size,
+    Color color,
+    Image image,
+    Icon icon,
+    String text,
+  ) {
     return CircleView(
       size: size,
       color: color,
@@ -123,7 +124,7 @@ class CircleView extends StatelessWidget {
         width: 2.0,
         style: BorderStyle.solid,
       ),
-      boxShadow: <BoxShadow>[
+      boxShadow: const [
         BoxShadow(
           color: Colors.black12,
           spreadRadius: 8.0,
