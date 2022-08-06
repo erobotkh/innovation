@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:innovation/core/routes/route_helper_views/hero_empty_route_page.dart';
 import 'package:innovation/views/account/account_view.dart';
 import 'package:innovation/views/home/home_view.dart';
+import 'package:innovation/views/ir_remoter/ir_remoter_view.dart';
 import 'package:innovation/views/main/main_view.dart';
 import 'package:innovation/views/post_detail/post_detail_view.dart';
 import 'package:innovation/views/posts/posts_view.dart';
@@ -46,6 +47,10 @@ part 'app_router.gr.dart';
         AutoRoute(
           path: 'account',
           page: AccountView,
+        ),
+        AutoRoute(
+          path: 'ir-remoter',
+          page: IrRemoterView,
         ),
       ],
     ),

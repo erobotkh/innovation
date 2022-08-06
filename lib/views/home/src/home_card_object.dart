@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innovation/views/ir_remoter/ir_remoter_view.dart';
 import 'package:innovation/views/joystick/joystick_view.dart';
 
 class HomeCardObject {
@@ -25,7 +26,7 @@ class HomeCardObject {
       iconData: Icons.settings_remote,
       title: "IR Remoter",
       subtitle: "Vitual IR Remoter",
-      toRoute: const JoystickViews(),
+      toRoute: const IrRemoterView(),
     ),
     HomeCardObject(
       iconData: Icons.gps_fixed,
