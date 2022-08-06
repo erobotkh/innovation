@@ -7,6 +7,7 @@ import 'package:innovation/views/ir_remoter/ir_remoter_view.dart';
 import 'package:innovation/views/main/main_view.dart';
 import 'package:innovation/views/post_detail/post_detail_view.dart';
 import 'package:innovation/views/posts/posts_view.dart';
+import 'package:innovation/views/sender/sender_view.dart';
 
 export 'package:auto_route/auto_route.dart';
 
@@ -53,6 +54,10 @@ part 'app_router.gr.dart';
           page: IrRemoterView,
         ),
       ],
+    ),
+    AutoRoute(
+      path: 'sender',
+      page: SenderView,
     ),
   ],
 )
