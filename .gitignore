@@ -47,3 +47,7 @@ app.*.map.json
 /android/app/release
 
 api_constant.dart
+
+# User setting
+.vscode/settings.json
+.fvm/flutter_sdk
