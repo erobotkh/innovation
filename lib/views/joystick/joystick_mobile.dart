@@ -2,8 +2,7 @@ part of joystick_view;
 
 class _JoystickMobile extends StatefulWidget {
   final JoystickViewModel viewModel;
-
-  _JoystickMobile(this.viewModel);
+  const _JoystickMobile(this.viewModel);
 
   @override
   State<_JoystickMobile> createState() => _JoystickMobileState();
@@ -11,6 +10,12 @@ class _JoystickMobile extends StatefulWidget {
 
 class _JoystickMobileState extends State<_JoystickMobile> {
   double servoSpeed = 1;
+
+  Future<void> send(String text) async {
+    if (kDebugMode) {
+      print(text);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,19 +50,19 @@ class _JoystickMobileState extends State<_JoystickMobile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ErJoystick(
+                  const ErJoystick(
                     size: 168,
                   ),
                   FourButtons(
-                    onLeft: () => print('onLeft'),
-                    onRight: () => print('onRight'),
-                    onUp: () => print('onUp'),
-                    onDown: () => print('onDown'),
+                    onLeft: () => send('onLeft'),
+                    onRight: () => send('onRight'),
+                    onUp: () => send('onUp'),
+                    onDown: () => send('onDown'),
                   ),
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               width: 400,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

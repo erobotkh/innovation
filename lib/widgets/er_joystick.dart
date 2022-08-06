@@ -1,22 +1,23 @@
-import 'dart:math' as _math;
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'circle_view.dart';
-
 
 typedef JoystickDirectionCallback = void Function(double degrees, double distance);
 typedef JoystickSpecificDirectionCallback = void Function(ErJoystickDirection? direction);
 
 enum ErJoystickDirection {
-  Top,
-  TopRight,
-  Right,
-  BottomRight,
-  Bottom,
-  BottomLeft,
-  Left,
-  TopLeft,
-  Stop,
+  top,
+  topRight,
+  right,
+  bottomRight,
+  bottom,
+  bottomLeft,
+  left,
+  topLeft,
+  stop,
 }
 
 class ErJoystick extends StatelessWidget {
@@ -69,7 +70,8 @@ class ErJoystick extends StatelessWidget {
   /// Defaults to [true]
   final bool showArrows;
 
-  ErJoystick({
+  const ErJoystick({
+    Key? key,
     this.size,
     this.iconsColor = Colors.white54,
     this.backgroundColor = Colors.blueGrey,
@@ -79,40 +81,40 @@ class ErJoystick extends StatelessWidget {
     this.onSpecificDirectionChanged,
     this.interval,
     this.showArrows = true,
-  });
+  }) : super(key: key);
 
   void _onDirectionChanged(double degrees, double distance) {
     if (onDirectionChanged != null) onDirectionChanged!(degrees, distance);
     if (onSpecificDirectionChanged == null) return;
 
     if (distance <= 0.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.Stop);
+      onSpecificDirectionChanged!(ErJoystickDirection.stop);
     } else if (degrees >= -22.5 && degrees < 22.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.Top);
+      onSpecificDirectionChanged!(ErJoystickDirection.top);
     } else if (degrees >= 22.5 && degrees < 67.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.TopRight);
+      onSpecificDirectionChanged!(ErJoystickDirection.topRight);
     } else if (degrees >= 67.5 && degrees < 112.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.Right);
+      onSpecificDirectionChanged!(ErJoystickDirection.right);
     } else if (degrees >= 112.5 && degrees < 157.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.BottomRight);
+      onSpecificDirectionChanged!(ErJoystickDirection.bottomRight);
     } else if (degrees >= 157.5 && degrees < 202.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.Bottom);
+      onSpecificDirectionChanged!(ErJoystickDirection.bottom);
     } else if (degrees >= 202.5 && degrees < 247.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.BottomLeft);
+      onSpecificDirectionChanged!(ErJoystickDirection.bottomLeft);
     } else if (degrees >= 247.5 && degrees < 292.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.Left);
+      onSpecificDirectionChanged!(ErJoystickDirection.left);
     } else if (degrees >= 292.5 && degrees < 337.5) {
-      onSpecificDirectionChanged!(ErJoystickDirection.TopLeft);
+      onSpecificDirectionChanged!(ErJoystickDirection.topLeft);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    double actualSize = size ?? _math.min(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height) * 0.5;
+    double actualSize = size ?? math.min(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height) * 0.5;
     double innerCircleSize = actualSize / 2;
     Offset lastPosition = Offset(innerCircleSize, innerCircleSize);
     Offset joystickInnerPosition =
-    _calculatePositionOfInnerCircle(lastPosition, innerCircleSize, actualSize, Offset(0, 0));
+        _calculatePositionOfInnerCircle(lastPosition, innerCircleSize, actualSize, const Offset(0, 0));
 
     DateTime? _callbackTimestamp;
 
@@ -126,12 +128,12 @@ class ErJoystick extends StatelessWidget {
                 backgroundColor,
               ),
               Positioned(
+                top: joystickInnerPosition.dy,
+                left: joystickInnerPosition.dx,
                 child: CircleView.joystickInnerCircle(
                   actualSize / 2,
                   innerCircleColor,
                 ),
-                top: joystickInnerPosition.dy,
-                left: joystickInnerPosition.dx,
               ),
               if (showArrows) ...createArrows(),
             ],
@@ -151,7 +153,7 @@ class ErJoystick extends StatelessWidget {
               _callbackTimestamp = null;
               _onDirectionChanged(0, 0);
               joystickInnerPosition = _calculatePositionOfInnerCircle(
-                  Offset(innerCircleSize, innerCircleSize), innerCircleSize, actualSize, Offset(0, 0));
+                  Offset(innerCircleSize, innerCircleSize), innerCircleSize, actualSize, const Offset(0, 0));
               setState(() => lastPosition = Offset(innerCircleSize, innerCircleSize));
             },
             onPanUpdate: (details) {
@@ -172,40 +174,40 @@ class ErJoystick extends StatelessWidget {
   List<Widget> createArrows() {
     return [
       Positioned(
+        top: 16.0,
+        left: 0.0,
+        right: 0.0,
         child: Icon(
           Icons.arrow_upward,
           color: iconsColor,
         ),
-        top: 16.0,
-        left: 0.0,
-        right: 0.0,
       ),
       Positioned(
+        top: 0.0,
+        bottom: 0.0,
+        left: 16.0,
         child: Icon(
           Icons.arrow_back,
           color: iconsColor,
         ),
-        top: 0.0,
-        bottom: 0.0,
-        left: 16.0,
       ),
       Positioned(
+        top: 0.0,
+        bottom: 0.0,
+        right: 16.0,
         child: Icon(
           Icons.arrow_forward,
           color: iconsColor,
         ),
-        top: 0.0,
-        bottom: 0.0,
-        right: 16.0,
       ),
       Positioned(
+        bottom: 16.0,
+        left: 0.0,
+        right: 0.0,
         child: Icon(
           Icons.arrow_downward,
           color: iconsColor,
         ),
-        bottom: 16.0,
-        left: 0.0,
-        right: 0.0,
       ),
     ];
   }
@@ -213,18 +215,18 @@ class ErJoystick extends StatelessWidget {
   DateTime? _processGesture(double size, double ignoreSize, Offset offset, DateTime? callbackTimestamp) {
     double middle = size / 2.0;
 
-    double angle = _math.atan2(offset.dy - middle, offset.dx - middle);
-    double degrees = angle * 180 / _math.pi + 90;
+    double angle = math.atan2(offset.dy - middle, offset.dx - middle);
+    double degrees = angle * 180 / math.pi + 90;
     if (offset.dx < middle && offset.dy < middle) {
       degrees = 360 + degrees;
     }
 
-    double dx = _math.max(0, _math.min(offset.dx, size));
-    double dy = _math.max(0, _math.min(offset.dy, size));
+    double dx = math.max(0, math.min(offset.dx, size));
+    double dy = math.max(0, math.min(offset.dy, size));
 
-    double distance = _math.sqrt(_math.pow(middle - dx, 2) + _math.pow(middle - dy, 2));
+    double distance = math.sqrt(math.pow(middle - dx, 2) + math.pow(middle - dy, 2));
 
-    double normalizedDistance = _math.min(distance / (size / 2), 1.0);
+    double normalizedDistance = math.min(distance / (size / 2), 1.0);
 
     DateTime? _callbackTimestamp = callbackTimestamp;
     if (_canCallOnDirectionChanged(callbackTimestamp)) {
@@ -256,39 +258,39 @@ class ErJoystick extends StatelessWidget {
   Offset _calculatePositionOfInnerCircle(Offset lastPosition, double innerCircleSize, double size, Offset offset) {
     double middle = size / 2.0;
 
-    double angle = _math.atan2(offset.dy - middle, offset.dx - middle);
-    double degrees = angle * 180 / _math.pi;
+    double angle = math.atan2(offset.dy - middle, offset.dx - middle);
+    double degrees = angle * 180 / math.pi;
     if (offset.dx < middle && offset.dy < middle) {
       degrees = 360 + degrees;
     }
     bool isStartPosition = lastPosition.dx == innerCircleSize && lastPosition.dy == innerCircleSize;
-    double lastAngleRadians = (isStartPosition) ? 0 : (degrees) * (_math.pi / 180.0);
+    double lastAngleRadians = (isStartPosition) ? 0 : (degrees) * (math.pi / 180.0);
 
     var rBig = size / 2;
     var rSmall = innerCircleSize / 2;
 
-    var x = (lastAngleRadians == -1) ? rBig - rSmall : (rBig - rSmall) + (rBig - rSmall) * _math.cos(lastAngleRadians);
-    var y = (lastAngleRadians == -1) ? rBig - rSmall : (rBig - rSmall) + (rBig - rSmall) * _math.sin(lastAngleRadians);
+    var x = (lastAngleRadians == -1) ? rBig - rSmall : (rBig - rSmall) + (rBig - rSmall) * math.cos(lastAngleRadians);
+    var y = (lastAngleRadians == -1) ? rBig - rSmall : (rBig - rSmall) + (rBig - rSmall) * math.sin(lastAngleRadians);
 
     var xPosition = lastPosition.dx - rSmall;
     var yPosition = lastPosition.dy - rSmall;
 
-    var angleRadianPlus = lastAngleRadians + _math.pi / 2;
-    if (angleRadianPlus < _math.pi / 2) {
+    var angleRadianPlus = lastAngleRadians + math.pi / 2;
+    if (angleRadianPlus < math.pi / 2) {
       if (xPosition > x) {
         xPosition = x;
       }
       if (yPosition < y) {
         yPosition = y;
       }
-    } else if (angleRadianPlus < _math.pi) {
+    } else if (angleRadianPlus < math.pi) {
       if (xPosition > x) {
         xPosition = x;
       }
       if (yPosition > y) {
         yPosition = y;
       }
-    } else if (angleRadianPlus < 3 * _math.pi / 2) {
+    } else if (angleRadianPlus < 3 * math.pi / 2) {
       if (xPosition < x) {
         xPosition = x;
       }
