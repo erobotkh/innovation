@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:innovation/views/ir_remoter/ir_remoter_view.dart';
 import 'package:innovation/views/joystick/joystick_view.dart';
+import 'package:innovation/views/sender/sender_view.dart';
 
 class HomeCardObject {
   final IconData iconData;
@@ -20,7 +21,7 @@ class HomeCardObject {
       iconData: Icons.keyboard,
       title: "Sender",
       subtitle: "Send string to arduio robot via Bluetooth",
-      toRoute: const JoystickViews(),
+      toRoute: const SenderView(),
     ),
     HomeCardObject(
       iconData: Icons.settings_remote,

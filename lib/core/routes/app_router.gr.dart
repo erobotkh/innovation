@@ -21,6 +21,10 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const MainView());
     },
+    SenderViewRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const SenderView());
+    },
     HomeViewRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const HomeView());
@@ -69,7 +73,8 @@ class _$AppRouter extends RootStackRouter {
               path: 'account', parent: MainViewRoute.name),
           RouteConfig(IrRemoterViewRoute.name,
               path: 'ir-remoter', parent: MainViewRoute.name)
-        ])
+        ]),
+        RouteConfig(SenderViewRoute.name, path: 'sender')
       ];
 }
 
@@ -80,6 +85,14 @@ class MainViewRoute extends PageRouteInfo<void> {
       : super(MainViewRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'MainViewRoute';
+}
+
+/// generated route for
+/// [SenderView]
+class SenderViewRoute extends PageRouteInfo<void> {
+  const SenderViewRoute() : super(SenderViewRoute.name, path: 'sender');
+
+  static const String name = 'SenderViewRoute';
 }
 
 /// generated route for

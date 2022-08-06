@@ -34,8 +34,7 @@ class ErTapEffect extends StatefulWidget {
   State<ErTapEffect> createState() => _ErTapEffectState();
 }
 
-class _ErTapEffectState extends State<ErTapEffect>
-    with SingleTickerProviderStateMixin {
+class _ErTapEffectState extends State<ErTapEffect> with SingleTickerProviderStateMixin {
   static double scaleActive = 0.98;
   static double opacityActive = 0.2;
 
@@ -69,10 +68,8 @@ class _ErTapEffectState extends State<ErTapEffect>
     }
   }
 
-  Animation<double> get animation =>
-      Tween<double>(begin: 1, end: scaleActive).animate(controller);
-  Animation<double> get animation2 =>
-      Tween<double>(begin: 1, end: opacityActive).animate(controller);
+  Animation<double> get animation => Tween<double>(begin: 1, end: scaleActive).animate(controller);
+  Animation<double> get animation2 => Tween<double>(begin: 1, end: opacityActive).animate(controller);
 
   @override
   Widget build(BuildContext context) {
