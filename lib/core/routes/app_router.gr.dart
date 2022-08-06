@@ -33,6 +33,10 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const AccountView());
     },
+    IrRemoterViewRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const IrRemoterView());
+    },
     PostsViewRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const PostsView());
@@ -62,7 +66,9 @@ class _$AppRouter extends RootStackRouter {
                     path: ':id', parent: PostsNamespaceRoute.name)
               ]),
           RouteConfig(AccountViewRoute.name,
-              path: 'account', parent: MainViewRoute.name)
+              path: 'account', parent: MainViewRoute.name),
+          RouteConfig(IrRemoterViewRoute.name,
+              path: 'ir-remoter', parent: MainViewRoute.name)
         ])
       ];
 }
@@ -100,6 +106,15 @@ class AccountViewRoute extends PageRouteInfo<void> {
   const AccountViewRoute() : super(AccountViewRoute.name, path: 'account');
 
   static const String name = 'AccountViewRoute';
+}
+
+/// generated route for
+/// [IrRemoterView]
+class IrRemoterViewRoute extends PageRouteInfo<void> {
+  const IrRemoterViewRoute()
+      : super(IrRemoterViewRoute.name, path: 'ir-remoter');
+
+  static const String name = 'IrRemoterViewRoute';
 }
 
 /// generated route for
