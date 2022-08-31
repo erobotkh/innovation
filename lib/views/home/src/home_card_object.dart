@@ -3,6 +3,8 @@ import 'package:innovation/views/ir_remoter/ir_remoter_view.dart';
 import 'package:innovation/views/joystick/joystick_view.dart';
 import 'package:innovation/views/sender/sender_view.dart';
 
+import '../../thumbstick/thumbstick_view.dart';
+
 class HomeCardObject {
   final IconData iconData;
   final String title;
@@ -39,7 +41,7 @@ class HomeCardObject {
       iconData: Icons.gamepad,
       title: "Thumbstick",
       subtitle: "Servo & Speed",
-      toRoute: const JoystickViews(),
+      toRoute: const ThumbstickViews(),
     ),
     HomeCardObject(
       iconData: Icons.people,

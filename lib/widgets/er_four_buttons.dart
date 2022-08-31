@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../../../constants/config_constant.dart';
 import '../../../theme/material3/m3_color.dart';
 
-class FourButtons extends StatelessWidget {
+class ErFourButtons extends StatelessWidget {
   final void Function()? onLeft;
   final void Function()? onUp;
   final void Function()? onRight;
   final void Function()? onDown;
+  final Color? buttonColor;
 
-  const FourButtons({
+  const ErFourButtons({
     Key? key,
     this.onLeft,
     this.onUp,
     this.onRight,
     this.onDown,
+    this.buttonColor,
   }) : super(key: key);
 
   @override
@@ -65,7 +67,7 @@ class FourButtons extends StatelessWidget {
       width: 56,
       height: 56,
       decoration: BoxDecoration(
-        color: M3Color.of(context).primary,
+        color: buttonColor ?? M3Color.of(context).primary,
         shape: BoxShape.circle,
       ),
       child: IconButton(
