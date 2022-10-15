@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+.fvm/
 
 # IntelliJ related
 *.iml
@@ -34,6 +35,15 @@ migrate_working_dir/
 
 # Web related
 lib/generated_plugin_registrant.dart
+
+# Macos related
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Windows related
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
+
+
 
 # Symbolication related
 app.*.symbols

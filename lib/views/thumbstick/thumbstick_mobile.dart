@@ -1,14 +1,14 @@
 part of joystick_view;
 
-class _JoystickMobile extends StatefulWidget {
-  final JoystickViewModel viewModel;
-  const _JoystickMobile(this.viewModel);
+class _ThumbstickMobile extends StatefulWidget {
+  final ThumbstickViewModel viewModel;
+  const _ThumbstickMobile(this.viewModel);
 
   @override
-  State<_JoystickMobile> createState() => _JoystickMobileState();
+  State<_ThumbstickMobile> createState() => _ThumbstickMobileState();
 }
 
-class _JoystickMobileState extends State<_JoystickMobile> {
+class _ThumbstickMobileState extends State<_ThumbstickMobile> {
   double servoSpeed = 1;
 
   Future<void> send(String text) async {
@@ -29,7 +29,8 @@ class _JoystickMobileState extends State<_JoystickMobile> {
         onPressed: () {},
       ),
       appBar: ErCustomAppBar(
-        title: "Joystick",
+        color: M3Color.dayColorsOf(context)[DateTime.friday],
+        title: "Thumbstick",
         action: [
           IconButton(
             onPressed: () {},
@@ -50,10 +51,15 @@ class _JoystickMobileState extends State<_JoystickMobile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const ErJoystick(
-                    size: 168,
+                  ErFourButtons(
+                    buttonColor: M3Color.dayColorsOf(context)[DateTime.friday],
+                    onLeft: () => send('onLeft'),
+                    onRight: () => send('onRight'),
+                    onUp: () => send('onUp'),
+                    onDown: () => send('onDown'),
                   ),
                   ErFourButtons(
+                    buttonColor: M3Color.dayColorsOf(context)[DateTime.friday],
                     onLeft: () => send('onLeft'),
                     onRight: () => send('onRight'),
                     onUp: () => send('onUp'),
@@ -71,6 +77,9 @@ class _JoystickMobileState extends State<_JoystickMobile> {
                   const Text('Servo:'),
                   Expanded(
                     child: Slider(
+                      activeColor: M3Color.dayColorsOf(context)[DateTime.friday],
+                      inactiveColor: M3Color.dayColorsOf(context)[DateTime.friday]?.withOpacity(0.54),
+                      thumbColor: M3Color.dayColorsOf(context)[DateTime.friday],
                       value: servoSpeed,
                       max: 5,
                       divisions: 5,
